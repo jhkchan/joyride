@@ -10,7 +10,7 @@
 !(function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(['jquery', 'foundation'], factory);
+    define(['jquery'], factory);
   } else if (typeof exports === 'object') {
     // Node, CommonJS-like
     module.exports = factory(require('jquery'));
@@ -53,8 +53,6 @@
       });
 
     }
-
-    
 
     /**
      * Initializes the joyride by rendering required markup
@@ -243,9 +241,13 @@
       });
 
       this.$items.on('click.zf.joyride', '[data-joyride-next]', function(e) {
-        _this.showNext();
+        setTimeout(function () {
+            _this.showNext();
+        }, 500);
       }).on('click.zf.joyride', '[data-joyride-prev]', function(e) {
-        _this.showPrev();
+        setTimeout(function () {
+            _this.showPrev();
+        }, 500);
       }).on('click.zf.joyride', '[data-joyride-close]', function(e) {
         e.preventDefault();
         if (_this.structure[_this.current].closable) {
@@ -256,12 +258,16 @@
         Foundation.Keyboard.handleKey(e, 'Joyride', {
           next: function() {
             if ($element.data('index') < _this.structure.length - 1) {
-              _this.showNext();
+              setTimeout(function () {
+                _this.showNext();
+              }, 500);
             }
           },
           previous: function() {
             if ($element.data('index') > 0) {
-              _this.showPrev();
+              setTimeout(function () {
+                _this.showPrev();
+              }, 500);
             }
           },
           close: function() {

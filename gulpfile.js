@@ -3,17 +3,11 @@ var gulp = require('gulp'),
   rimraf = require('rimraf').sync,
   requireDir = require('require-dir'),
   browser = require('browser-sync'),
-  config = require('./gulp/config');
+  config = require('./gulp/01-config');
 
 requireDir('./gulp');
 
 
-
-/**
- * Gulp task default.
- * Calls build:all.
- */
-gulp.task('default', ['serve', 'watch']);
 
 /**
  * Gulp task build:all.
@@ -27,23 +21,23 @@ gulp.task('build:all', function(cb) {
  * Gulp task build:foundation.
  * Calls js:foundation and css:foundation.
  */
-gulp.task('build:foundation', ['js:foundation', 'css:foundation']);
+gulp.task('build:foundation', gulp.parallel('js:foundation', 'css:foundation'));
 
 /**
  * Gulp task build:standalone.
  * Calls js:standalone and css:standalone.
  */
-gulp.task('build:standalone', ['js:standalone', 'css:standalone']);
+gulp.task('build:standalone', gulp.parallel('js:standalone', 'css:standalone'));
 
 /**
  * Gulp task dist.
  * Copies the built files into the dist folder.
  */
-gulp.task('dist', ['js:min', 'css:min'], function() {
+gulp.task('dist', gulp.series(gulp.parallel('js:min', 'css:min'), function() {
   // uninified files
-  gulp.src([config.buildPath + 'assets/*'])
+  return gulp.src([config.buildPath + 'assets/*'])
     .pipe(gulp.dest(config.destPath));
-});
+}));
 
 /**
  * Gulp task watch.
@@ -59,9 +53,9 @@ gulp.task('watch', function() {
  * Gulp task serve.
  * Starts a BrowerSync instance.
  */
-gulp.task('serve', ['build:all'], function() {
+gulp.task('serve', gulp.series('build:all', function() {
   browser.init({
-    server: { 
+    server: {
       baseDir: './test/visual',
       routes: {
         "/assets": "_build/assets",
@@ -71,7 +65,13 @@ gulp.task('serve', ['build:all'], function() {
       }
     }
   });
-});
+}));
+
+/**
+ * Gulp task default.
+ * Calls build:all.
+ */
+gulp.task('default', gulp.series('serve', 'watch'));
 
 /**
  * Gulp task clean.

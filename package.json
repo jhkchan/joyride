@@ -45,7 +45,7 @@
     "chai-jquery": "^2.0.0",
     "chalk": "^1.1.1",
     "foundation-sites": "~6.3.1",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
     "gulp-compressor": "^0.1.0",

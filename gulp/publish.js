@@ -3,7 +3,7 @@ var gulp = require('gulp'),
   rimraf = require('rimraf').sync,
   babel = require('gulp-babel'),
   exec = require('child_process').exec,
-  config = require('./config'),
+  config = require('./01-config'),
   tmpFolder = './_publish/';
 
 /**
