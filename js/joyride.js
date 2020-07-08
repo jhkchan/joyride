@@ -237,7 +237,9 @@
     _events() {
       var _this = this;
       $('[data-joyride-start="#'+_this.id+'"]').click(function() {
-        _this.start();
+        setTimeout(function () {
+          _this.start();
+        }, 500);
       });
 
       this.$items.on('click.zf.joyride', '[data-joyride-next]', function(e) {

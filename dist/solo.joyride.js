@@ -3269,11 +3269,11 @@ function _classCallCheck(instance, Constructor) {
         this.$items.on('click.zf.joyride', '[data-joyride-next]', function (e) {
           setTimeout(function () {
             _this.showNext();
-          }, 100);
+          }, 500);
         }).on('click.zf.joyride', '[data-joyride-prev]', function (e) {
           setTimeout(function () {
             _this.showPrev();
-          }, 100);
+          }, 500);
         }).on('click.zf.joyride', '[data-joyride-close]', function (e) {
           e.preventDefault();
           if (_this.structure[_this.current].closable) {
@@ -3286,14 +3286,14 @@ function _classCallCheck(instance, Constructor) {
               if ($element.data('index') < _this.structure.length - 1) {
                 setTimeout(function () {
                   _this.showNext();
-                }, 100);
+                }, 500);
               }
             },
             previous: function () {
               if ($element.data('index') > 0) {
                 setTimeout(function () {
                   _this.showPrev();
-                }, 100);
+                }, 500);
               }
             },
             close: function () {
